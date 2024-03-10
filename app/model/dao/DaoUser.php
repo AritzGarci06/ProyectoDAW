@@ -9,7 +9,7 @@ class DaoUser
 {
     public function findAll()
     {
-        $result = MySQLBD::queryRead("SELECT * FROM user_id");
+        $result = MySQLBD::queryRead("SELECT * FROM user_client");
         $list = array();
         foreach ($result as $row) {
             $list[] = User::arrayToObj($row);

@@ -7,7 +7,7 @@ include_once "model/services/MovieService.php";
 $BadRequestCode = 400;
 $NotFoundCode = 404;
 $MethodNotAllowedCode = 405;
-
+//TODO Crear el Controller y Rellenar tablas con datos Dummie
 $metodo = $_SERVER["REQUEST_METHOD"];
 switch ($metodo) {
     case "POST":
