@@ -1,6 +1,6 @@
 <?php
 
-namespace entity;
+namespace model\entity;
 
 class Backdrops
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace dao;
+namespace model\dao;
 
-use entity\Movie;
-use MySQLBD;
+use model\config\MySQLBD;
+use model\entity\Movie;
 
 class DaoMovie
 {
@@ -57,6 +57,15 @@ class DaoMovie
             $movie->genres,
             $movie->poster,
             $movie->imdb_id,
+        );
+    }
+
+    public function delete(string $id)
+    {
+        $query = "DELETE from movie WHERE imdb_id = ?";
+        MySQLBD::queryWrite(
+            $query,
+            $id
         );
     }
 }

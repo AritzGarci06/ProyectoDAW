@@ -1,5 +1,8 @@
 <?php
 
+namespace model\config;
+use mysqli;
+
 class MySQLBD
 {
     private static function connect()
@@ -46,4 +49,5 @@ class MySQLBD
     }
 
 }
+
 ?>

@@ -1,10 +1,11 @@
 <?php
 
-namespace dao;
+namespace model\dao;
 
 
-use entity\Playlist;
-use MySQLBD;
+use model\config\MySQLBD;
+use model\entity\Playlist;
+
 //TODO Falta hacer Querys que se comuniquen con la tabla movie_playlist para que funcione con la BD
 class DaoPlaylist
 {

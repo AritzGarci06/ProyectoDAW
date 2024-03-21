@@ -1,9 +1,9 @@
 <?php
 
-namespace services;
+namespace models\services;
 
-use dao\DaoMovie;
-use entity\Movie;
+use model\dao\DaoMovie;
+use model\entity\Movie;
 
 class MovieService
 {
@@ -26,5 +26,11 @@ class MovieService
     {
         $daoMovie = new DaoMovie();
         $daoMovie->update($movie);
+    }
+
+    public static function deleteMovie($id)
+    {
+        $daoMovie = new DaoMovie();
+        $daoMovie->delete($id);
     }
 }

@@ -1,9 +1,9 @@
 <?php
 
-namespace dao;
+namespace model\dao;
 
-use entity\Review;
-use MySQLBD;
+use model\config\MySQLBD;
+use model\entity\Review;
 
 class DaoReview
 {

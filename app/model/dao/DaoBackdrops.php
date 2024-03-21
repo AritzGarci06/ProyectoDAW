@@ -1,9 +1,9 @@
 <?php
 
-namespace dao;
+namespace model\dao;
 
-use entity\Backdrops;
-use MySQLBD;
+use model\config\MySQLBD;
+use model\entity\Backdrops;
 
 class DaoBackdrops
 {
