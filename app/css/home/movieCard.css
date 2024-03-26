@@ -1,0 +1,28 @@
+.movies-cards {
+    display: flex;
+    justify-content: center;
+}
+
+.movies {
+    display: grid;
+    justify-items: center;
+    grid-template-columns:repeat(auto-fill,minmax(230px, 1fr));
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
+
+div button a {
+    text-decoration: none;
+}
+
+.card-body h5, .card-body p{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media screen and (width >= 900px) {
+    .movies {
+        grid-template-columns:repeat(2,minmax(230px, 1fr));
+    }
+}

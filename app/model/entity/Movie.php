@@ -10,6 +10,7 @@ class Movie
     public string $trailerLink;
     public string $genres;
     public string $poster;
+    public array $backdrops;
 
     /**
      * @param string $imdb_id
@@ -19,7 +20,7 @@ class Movie
      * @param string $genres
      * @param string $poster
      */
-    public function __construct(string $imdb_id, string $title, string $releaseDate, string $trailerLink, string $genres, string $poster)
+    public function __construct(string $imdb_id, string $title, string $releaseDate, string $trailerLink, string $genres, string $poster, array $backdrops)
     {
         $this->imdb_id = $imdb_id;
         $this->title = $title;
@@ -27,9 +28,10 @@ class Movie
         $this->trailerLink = $trailerLink;
         $this->genres = $genres;
         $this->poster = $poster;
+        $this->backdrops = $backdrops;
     }
 
-    public static function arrayToObj($row)
+    public static function arrayToObj($row, $backdrops)
     {
         return new Movie(
             $row["imdb_id"] ?? '',
@@ -37,11 +39,12 @@ class Movie
             $row["releaseDate"] ?? '',
             $row["trailerLink"] ?? '',
             $row["genres"] ?? '',
-            $row["poster"] ?? ''
+            $row["poster"] ?? '',
+                $backdrops
         );
     }
 
-    public static function jsonToObj( $json)
+    public static function jsonToObj($json)
     {
         $obj = json_decode($json);
         $imdb_id = isset($obj->imdb_id) ? $obj->imdb_id : '';
@@ -50,13 +53,15 @@ class Movie
         $trailerLink = isset($obj->trailerLink) ? $obj->trailerLink : '';
         $genres = isset($obj->genres) ? $obj->genres : '';
         $poster = isset($obj->poster) ? $obj->poster : '';
+        $backdrops = isset($obj->backdrops) ? $obj->backdrops : '';
         return new Movie(
             $imdb_id,
             $title,
             $releaseDate,
             $trailerLink,
             $genres,
-            $poster
+            $poster,
+            $backdrops
         );
     }
 
@@ -67,7 +72,8 @@ class Movie
             "Release Date: " . $this->releaseDate . "\n" .
             "Trailer Link: " . $this->trailerLink . "\n" .
             "Genres: " . $this->genres . "\n" .
-            "Poster: " . $this->poster . "\n";
+            "Poster: " . $this->poster . "\n" .
+            "Backdrops: " . implode(", ", $this->backdrops) . "\n";
     }
 
 }

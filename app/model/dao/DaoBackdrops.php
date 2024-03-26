@@ -28,7 +28,7 @@ class DaoBackdrops
 
     public function findByImdbId($id)
     {
-        $result = MySQLBD::queryRead("SELECT * FROM backdrops WHERE imdb_id = ?", $id);
+        $result = MySQLBD::queryRead("SELECT * FROM backdrops WHERE imdb_id = ? LIMIT 1", $id);
         $list = array();
         foreach ($result as $row) {
             $list[] = Backdrops::arrayToObj($row);

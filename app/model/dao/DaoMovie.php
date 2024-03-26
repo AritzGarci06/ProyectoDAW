@@ -9,10 +9,12 @@ class DaoMovie
 {
     public function findAll()
     {
-        $result = MySQLBD::queryRead("SELECT * FROM movie");
+        $resultMovies = MySQLBD::queryRead("SELECT * FROM movie");
+        $daoBackdrops = new DaoBackdrops();
         $list = array();
-        foreach ($result as $row) {
-            $list[] = Movie::arrayToObj($row);
+        foreach ($resultMovies as $row) {
+            $backdrops = $daoBackdrops->findByImdbId($row["imdb_id"]);
+            $list[] = Movie::arrayToObj($row, $backdrops);
         }
         return $list;
     }
@@ -23,7 +25,9 @@ class DaoMovie
         if (count($result) < 1) {
             return null;
         }
-        return Movie::arrayToObj($result[0]);
+        $daoBackdrops = new DaoBackdrops();
+        $backdrops = $daoBackdrops->findByImdbId($result[0]["imdb_id"]);
+        return Movie::arrayToObj($result[0], $backdrops);
     }
 
     public function save(Movie $movie)
