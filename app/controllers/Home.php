@@ -9,14 +9,15 @@ include_once "../app/model/dao/DaoMovie.php";
 include_once "../app/model/services/MovieService.php";
 include_once "../app/model/entity/Backdrops.php";
 include_once "../app/model/dao/DaoBackdrops.php";
-class Home extends Controller
+class Home
 {
-    public function index($name = '', $other = '')
+    public function index()
     {
         $movies = MovieService::getMovies();
+        $css = '../app/views/css/home/style.css';
         $data = ['movies' => $movies];
-        require_once('../app/views/home/index.php');
-        $this->view('home/index', $data);
+
+        include_once('../app/views/index.php');
     }
 
 }

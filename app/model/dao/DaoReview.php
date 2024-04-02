@@ -26,6 +26,18 @@ class DaoReview
         return Review::arrayToObj($result[0]);
     }
 
+    public function findByImbd_id($id)
+    {
+        $result = MySQLBD::queryRead("SELECT 
+    reviewid, imdb_id, r.user_id, rating, body, date_timestamp, username 
+FROM review as r join user_client as u on r.user_id = u.user_id where r.imdb_id = ?;", $id);
+        $list = array();
+        foreach ($result as $row) {
+            $list[] = Review::arrayToObj($row);
+        }
+        return $list;
+    }
+
     public function save(Review $review)
     {
         $query = "INSERT INTO review VALUES (?,?,?,?,?)";
@@ -41,7 +53,7 @@ class DaoReview
 
     public function update(Review $review)
     {
-        $query = "UPDATE backdrops SET 
+        $query = "UPDATE review SET 
             imdb_id = ?,
             user_id = ?,
             rating = ?,
@@ -56,6 +68,15 @@ class DaoReview
             $review->body,
             $review->date_timestamp,
             $review->reviewid,
+        );
+    }
+
+    public function delete($id)
+    {
+        $query = "DELETE from review WHERE reviewid = ?";
+        MySQLBD::queryWrite(
+            $query,
+            $id
         );
     }
 }

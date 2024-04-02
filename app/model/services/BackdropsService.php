@@ -7,7 +7,7 @@ use model\dao\DaoBackdrops;
 
 class BackdropsService
 {
-    public static function getMovies(): array
+    public static function getBackdrops(): array
     {
         $daoMovie = new DaoBackdrops();
         return $daoMovie->findAll();

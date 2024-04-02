@@ -21,7 +21,7 @@
                                     TRAILER</a>
                             </button>
                             <button type="button" class="btn btn-light">
-                                <a class="text-dark" href='#' target='_blank'>REVIEW</a>
+                                <a class="text-dark" href="movie/<?php echo $movie->imdb_id ?>">INFO</a>
                             </button>
                         </div>
                     </div>
