@@ -6,9 +6,9 @@
             ?>
             <div class="review-item">
                 <hr>
-                <div class="row">
-                    <div class="col-1 clientImage">
-                        <img src="" alt="...">
+                <div class="row pb-2">
+                    <div class="clientImage col-1 ">
+                        <img class="img-fluid" src="<?php echo ROUTE_URL ?>/img/userIcon.jpg" alt="...">
                     </div>
                     <div class="col-3">
 

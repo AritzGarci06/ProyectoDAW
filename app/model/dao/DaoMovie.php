@@ -1,10 +1,8 @@
 <?php
 
-namespace model\dao;
-
-use model\config\MySQLBD;
-use model\entity\Movie;
-
+require_once '../app/model/entity/Backdrops.php';
+require_once '../app/model/services/BackdropsService.php';
+require_once '../app/model/dao/DaoBackdrops.php';
 class DaoMovie
 {
     public function findAll()
@@ -14,7 +12,7 @@ class DaoMovie
         $list = array();
         foreach ($resultMovies as $row) {
             $backdrops = $daoBackdrops->findByImdbId($row["imdb_id"]);
-            $list[] = Movie::arrayToObj($row, $backdrops);
+            $list[] = MovieEntity::arrayToObj($row, $backdrops);
         }
         return $list;
     }
@@ -27,10 +25,10 @@ class DaoMovie
         }
         $daoBackdrops = new DaoBackdrops();
         $backdrops = $daoBackdrops->findByImdbId($result[0]["imdb_id"]);
-        return Movie::arrayToObj($result[0], $backdrops);
+        return MovieEntity::arrayToObj($result[0], $backdrops);
     }
 
-    public function save(Movie $movie)
+    public function save(MovieEntity $movie)
     {
         $query = "INSERT INTO movie VALUES (?,?,?,?,?,?)";
         MySQLBD::queryWrite(
@@ -44,7 +42,7 @@ class DaoMovie
         );
     }
 
-    public function update(Movie $movie)
+    public function update(MovieEntity $movie)
     {
         $query = "UPDATE movie SET 
             title = ?,

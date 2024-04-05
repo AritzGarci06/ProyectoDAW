@@ -1,19 +1,24 @@
 <?php
-
-namespace core;
-
 class Controller
 {
-    //No me deja instanciar clase desde la carpeta services, solo desde la carpeta model
     public function model($model)
     {
-        require_once('../app/model/services/'.$model.'.php');
-
-        return $model;
+        $model = ucfirst($model);
+        require_once '../app/model/entity/' . $model . 'Entity.php';
+        require_once '../app/model/dao/Dao' . $model . '.php';
+        require_once '../app/model/services/' . $model . 'Service.php';
+        $model = $model.'Service';
+        return new $model();
     }
 
     public function view($view, $data = [])
     {
-        require_once('../app/views/' . $view . '.php');
+        $url = '../app/views/'.$view.'.php';
+        if(file_exists($url)){
+            extract($data);
+            require_once $url;
+        }else{
+            die('The view do not exist');
+        }
     }
 }

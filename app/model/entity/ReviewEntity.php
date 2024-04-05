@@ -1,10 +1,6 @@
 <?php
 
-namespace model\entity;
-
-use DateTime;
-
-class Review
+class ReviewEntity
 {
     public int $reviewid;
     public string $imdb_id;
@@ -35,7 +31,7 @@ class Review
 
     public static function arrayToObj($row)
     {
-        return new Review(
+        return new ReviewEntity(
             $row["reviewid"] ?? 0,
             $row["imdb_id"] ?? '',
             $row["user_id"] ?? '',

@@ -1,8 +1,6 @@
 <?php
 
-namespace model\entity;
-
-class Movie
+class MovieEntity
 {
     public string $imdb_id;
     public string $title;
@@ -33,7 +31,7 @@ class Movie
 
     public static function arrayToObj($row, $backdrops)
     {
-        return new Movie(
+        return new MovieEntity(
             $row["imdb_id"] ?? '',
             $row["title"] ?? '',
             $row["releaseDate"] ?? '',
@@ -54,7 +52,7 @@ class Movie
         $genres = isset($obj->genres) ? $obj->genres : '';
         $poster = isset($obj->poster) ? $obj->poster : '';
         $backdrops = isset($obj->backdrops) ? $obj->backdrops : '';
-        return new Movie(
+        return new MovieEntity(
             $imdb_id,
             $title,
             $releaseDate,

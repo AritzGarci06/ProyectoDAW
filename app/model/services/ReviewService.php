@@ -1,10 +1,4 @@
 <?php
-
-namespace model\services;
-
-use model\dao\DaoReview;
-use model\entity\Review;
-
 class ReviewService
 {
     public static function getReviews($id): array
@@ -12,17 +6,17 @@ class ReviewService
         $daoReview = new DaoReview();
         return $daoReview->findByImbd_id($id);
     }
-    public static function getReview($id): ?Review
+    public static function getReview($id): ?ReviewEntity
     {
         $daoReview = new DaoReview();
         return $daoReview->findById($id);
     }
-    public static function setReview(Review $obj)
+    public static function setReview(ReviewEntity $obj)
     {
         $daoReview = new DaoReview();
         $daoReview->save($obj);
     }
-    public static function updateReview(Review $obj)
+    public static function updateReview(ReviewEntity $obj)
     {
         $daoReview = new DaoReview();
         $daoReview->update($obj);

@@ -1,10 +1,4 @@
 <?php
-
-namespace models\services;
-
-use model\dao\DaoMovie;
-use model\entity\Movie;
-
 class MovieService
 {
     public static function getMovies(): array
@@ -12,7 +6,7 @@ class MovieService
         $daoMovie = new DaoMovie();
        return $daoMovie->findAll();
     }
-    public static function getMovie($id): ?Movie
+    public static function getMovie($id): MovieEntity
     {
         $daoMovie = new DaoMovie();
         return $daoMovie->findById($id);

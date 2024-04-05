@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 require_once "app/model/services/MovieService.php";
 require_once "app/model/dao/DaoMovie.php";
 require_once "app/model/dao/DaoBackdrops.php";
-require_once "app/model/entity/Movie.php";
+require_once "app/model/entity/MovieEntity.php";
 require_once "app/model/entity/Backdrops.php";
 require_once "app/model/config/MySQLBD.php";
 

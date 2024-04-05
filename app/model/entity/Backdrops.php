@@ -1,7 +1,5 @@
 <?php
 
-namespace model\entity;
-
 class Backdrops
 {
     public int $id;

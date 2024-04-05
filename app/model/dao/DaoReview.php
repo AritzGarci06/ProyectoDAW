@@ -1,10 +1,5 @@
 <?php
 
-namespace model\dao;
-
-use model\config\MySQLBD;
-use model\entity\Review;
-
 class DaoReview
 {
     public function findAll()
@@ -12,7 +7,7 @@ class DaoReview
         $result = MySQLBD::queryRead("SELECT * FROM review");
         $list = array();
         foreach ($result as $row) {
-            $list[] = Review::arrayToObj($row);
+            $list[] = ReviewEntity::arrayToObj($row);
         }
         return $list;
     }
@@ -23,7 +18,7 @@ class DaoReview
         if (count($result) < 1) {
             return null;
         }
-        return Review::arrayToObj($result[0]);
+        return ReviewEntity::arrayToObj($result[0]);
     }
 
     public function findByImbd_id($id)
@@ -33,12 +28,12 @@ class DaoReview
 FROM review as r join user_client as u on r.user_id = u.user_id where r.imdb_id = ?;", $id);
         $list = array();
         foreach ($result as $row) {
-            $list[] = Review::arrayToObj($row);
+            $list[] = ReviewEntity::arrayToObj($row);
         }
         return $list;
     }
 
-    public function save(Review $review)
+    public function save(ReviewEntity $review)
     {
         $query = "INSERT INTO review VALUES (?,?,?,?,?)";
         MySQLBD::queryWrite(
@@ -51,7 +46,7 @@ FROM review as r join user_client as u on r.user_id = u.user_id where r.imdb_id 
         );
     }
 
-    public function update(Review $review)
+    public function update(ReviewEntity $review)
     {
         $query = "UPDATE review SET 
             imdb_id = ?,
