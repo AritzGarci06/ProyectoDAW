@@ -1,10 +1,8 @@
 <div class="movies-cards m-5">
     <div class="movies">
         <?php
-        $movies = $data['movies'];
         foreach ($movies as $index => $movie) {
-            $genres = explode(',', $movie->genres);
-            $genres = implode(", ", $genres);
+            $genres = implode(", ", $movie->genres);
             ?>
             <div class="card text-bg-dark" style="max-width: 540px; width: 400px">
                 <div class="row g-0">
@@ -21,7 +19,7 @@
                                     TRAILER</a>
                             </button>
                             <button type="button" class="btn btn-light">
-                                <a class="text-dark" href="movie/findOne/<?php echo $movie->imdb_id ?>">INFO</a>
+                                <a class="text-dark" href="movie/findOne/<?php echo $movie->id ?>">INFO</a>
                             </button>
                         </div>
                     </div>

@@ -11,6 +11,12 @@ class MovieService
         $daoMovie = new DaoMovie();
         return $daoMovie->findById($id);
     }
+    public static function getYears(): array
+    {
+        $daoMovie = new DaoMovie();
+        return $daoMovie->findAllYears();
+    }
+
     public static function setMovie(Movie $movie)
     {
         $daoMovie = new DaoMovie();

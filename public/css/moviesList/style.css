@@ -1,0 +1,39 @@
+@import "../constants.css";
+@import "genreFilter.css";
+body{
+    background-color: var(--color-background) !important;
+    color: white !important;
+}
+
+.container{
+    display: flex !important;
+    justify-content: center;
+    gap: 8px;
+}
+
+.movie-container{
+    display: flex;
+    margin-bottom: 16px;
+    gap: 16px;
+}
+
+.poster{
+    max-width: 150px;
+    border-radius: 5px;
+}
+
+.body{
+    max-width: 500px;
+    max-height: 125px;
+    overflow: auto;
+}
+.body::-webkit-scrollbar{
+    width: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+.body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}

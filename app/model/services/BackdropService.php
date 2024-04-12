@@ -1,9 +1,9 @@
 <?php
-class BackdropsService
+class BackdropService
 {
     public static function getBackdrops(): array
     {
-        $daoMovie = new DaoBackdrops();
+        $daoMovie = new DaoBackdrop();
         return $daoMovie->findAll();
     }
 }

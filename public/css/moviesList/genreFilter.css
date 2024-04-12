@@ -1,0 +1,62 @@
+.filter-section{
+    color: black;
+    background-color: white;
+    width: 200px;
+    max-width: 200px;
+    height: fit-content;
+    border-radius: 10px;
+}
+
+.header-filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-filter i{
+    padding-left: 5px;
+}
+
+.header-filter i:hover{
+    cursor: pointer;
+}
+
+
+.list-group-item button{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list-items{
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.list-items > hr{
+    margin: 2px;
+}
+
+.list-items > li{
+    list-style: none;
+    vertical-align: middle;
+}
+
+.list-items > li:hover{
+    cursor: pointer;
+}
+
+.list-not-active{
+    display: none !important;
+}
+
+.counter{
+    display: none !important;
+}
+
+
+.list-active{
+    color: white;
+    background-color: #0d6efd;
+}

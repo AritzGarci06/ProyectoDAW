@@ -3,22 +3,27 @@
 class Movie extends Controller
 {
 
-    public function index($id = '')
+    public function index()
     {
-        // $movie = MovieService::getMovie($id);
-        // $tags = explode(',',$movie->genres);
-        // $reviews = ReviewService::getReviews($id);
-        // require_once('../app/views/movie.php');
+        $movieService = $this->model('movie');
+        $movies = $movieService->getMovies();
+        $years = $movieService->getYears();
+        $genres = $this->model('genre')->getGenres();
+        $data = array();
+        $data['movies'] = $movies;
+        $data['genres'] = $genres;
+        $data['years'] = $years;
+        $this->view('moviesList', $data);
     }
 
     public function findOne($id = '')
     {
         $movie = $this->model('movie')->getMovie($id);
-        $reviews = $this->model('review')->getReviews($id);
+//        $reviews = $this->model('review')->getReviews($id);
         $data = array();
         $data['movie'] = $movie;
-        $data['tags'] = explode(',',$movie->genres);
-        $data['reviews'] = $reviews;
+        $data['tags'] = $movie->genres;
+//        $data['reviews'] = $reviews;
         $this->view('movie', $data);
     }
 

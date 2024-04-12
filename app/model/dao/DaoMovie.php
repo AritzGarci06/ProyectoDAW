@@ -1,39 +1,56 @@
 <?php
 
-require_once '../app/model/entity/Backdrops.php';
-require_once '../app/model/services/BackdropsService.php';
-require_once '../app/model/dao/DaoBackdrops.php';
+require_once '../app/model/entity/BackdropEntity.php';
+require_once '../app/model/dao/DaoBackdrop.php';
+require_once '../app/model/entity/GenreEntity.php';
+require_once '../app/model/dao/DaoGenre.php';
+
 class DaoMovie
 {
     public function findAll()
     {
         $resultMovies = MySQLBD::queryRead("SELECT * FROM movie");
-        $daoBackdrops = new DaoBackdrops();
+        $daoBackdrops = new DaoBackdrop();
+        $daoGenre = new DaoGenre();
         $list = array();
         foreach ($resultMovies as $row) {
-            $backdrops = $daoBackdrops->findByImdbId($row["imdb_id"]);
-            $list[] = MovieEntity::arrayToObj($row, $backdrops);
+            $backdrops = $daoBackdrops->findById($row["movie_id"]);
+            $genres = GenreEntity::getGenreArray($daoGenre->findById($row["movie_id"]));
+            $list[] = MovieEntity::arrayToObj($row, $backdrops, $genres);
+        }
+        return $list;
+    }
+
+    public function findAllYears()
+    {
+        $resultMovies = MySQLBD::queryRead("select distinct year(release_date) as year from movie");
+        $list = array();
+        foreach ($resultMovies as $row) {
+            $list[] = $row["year"];
         }
         return $list;
     }
 
     public function findById($id)
     {
-        $result = MySQLBD::queryRead("SELECT * FROM movie WHERE imdb_id = ?", $id);
+        $result = MySQLBD::queryRead("SELECT * FROM movie WHERE movie_id = ?", $id);
         if (count($result) < 1) {
             return null;
         }
-        $daoBackdrops = new DaoBackdrops();
-        $backdrops = $daoBackdrops->findByImdbId($result[0]["imdb_id"]);
-        return MovieEntity::arrayToObj($result[0], $backdrops);
+        $daoBackdrops = new DaoBackdrop();
+        $daoGenre = new DaoGenre();
+        $backdrops = $daoBackdrops->findById($result[0]["movie_id"]);
+        $genres = GenreEntity::getGenreArray($daoGenre->findById($result[0]["movie_id"]));
+        return MovieEntity::arrayToObj($result[0], $backdrops, $genres);
     }
+
 
     public function save(MovieEntity $movie)
     {
         $query = "INSERT INTO movie VALUES (?,?,?,?,?,?)";
         MySQLBD::queryWrite(
             $query,
-            $movie->imdb_id,
+            $movie->id,
             $movie->title,
             $movie->releaseDate,
             $movie->trailerLink,
@@ -50,7 +67,7 @@ class DaoMovie
             trailerLink = ?,
             genres = ?,
             poster = ?
-        WHERE imdb_id = ?";
+        WHERE movie_id = ?";
         MySQLBD::queryWrite(
             $query,
             $movie->title,
@@ -58,13 +75,13 @@ class DaoMovie
             $movie->trailerLink,
             $movie->genres,
             $movie->poster,
-            $movie->imdb_id,
+            $movie->id,
         );
     }
 
     public function delete(string $id)
     {
-        $query = "DELETE from movie WHERE imdb_id = ?";
+        $query = "DELETE from movie WHERE movie_id = ?";
         MySQLBD::queryWrite(
             $query,
             $id

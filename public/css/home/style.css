@@ -1,0 +1,7 @@
+@import "../constants.css";
+@import "carousel.css";
+@import "movieCard.css";
+
+body {
+    background-color: var(--color-background) !important;
+}
