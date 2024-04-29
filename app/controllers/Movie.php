@@ -23,7 +23,7 @@ class Movie extends Controller
         $data = array();
         $data['movie'] = $movie;
         $data['tags'] = $movie->genres;
-//        $data['reviews'] = $reviews;
+        $data['reviews'] = array();
         $this->view('movie', $data);
     }
 

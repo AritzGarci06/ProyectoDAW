@@ -11,7 +11,8 @@
 </head>
 <?php require_once ROUTE_APP . "/views/inc/header.php" ?>
 <body>
-<?php require_once ROUTE_APP . "/views/components/hero.php" ?>
+<?php require_once ROUTE_APP . "/views/components/movie/hero.php" ?>
+<?php require_once ROUTE_APP . "/views/components/movie/review.php" ?>
 </body>
 <?php require_once ROUTE_APP . "/views/inc/footer.php" ?>
 </html>

@@ -1,8 +1,7 @@
 #review-section{
-    display: flex;
+    display: grid;
     justify-content: center;
 }
-
 
 #review-container{
     width: min-content;

@@ -4,6 +4,7 @@
             <div id="title-container" class="row">
                 <h1 id="title" class="text-light"><?php echo $movie->title ?></h1>
                 <p class="text-white-50"><?php echo $movie->releaseDate ?></p>
+
             </div>
             <div id="btn-container" class="mb-2">
                 <?php
@@ -13,6 +14,10 @@
                     <?php
                 }
                 ?>
+                <button type="button" class="buttons-genres">
+                    <a href='<?php echo $movie->trailerLink ?>' target='_blank'>WATCH
+                        TRAILER</a>
+                </button>
             </div>
             <div id="hero-container-img" class="row">
                 <div id="poster" class="col-3 col-sm-12 p-0">
@@ -45,7 +50,9 @@
                     </button>
                 </div>
             </div>
-
+            <div class="mt-2">
+            <p class="text-light lh-lg"><?php echo $movie->body?></p>
+            </div>
         </div>
     </div>
 </section>

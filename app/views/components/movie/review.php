@@ -1,6 +1,11 @@
 <section id="review-section" class="text-light">
+    <div class="coment">
+        <textarea name="coment" id="coment" cols="50" rows="5"></textarea>
+    </div>
     <div class="review-container">
-
+        <?php if(empty($reviews)): ?>
+            <h5>No hay comentarios</h5>
+        <?php else: ?>
         <?php
         foreach ($reviews as $review) {
             ?>
@@ -32,6 +37,7 @@
             <?php
         }
         ?>
+        <?php endif; ?>
 
     </div>
 </section>

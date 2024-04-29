@@ -17,8 +17,8 @@
 
 <body>
       <?php require_once ROUTE_APP . "/views/inc/header.php" ?>
-      <?php require_once ROUTE_APP . "/views/components/carousel.php" ?>
-      <?php require_once ROUTE_APP . "/views/components/movieCard.php" ?>
+      <?php require_once ROUTE_APP . "/views/components/index/carousel.php" ?>
+      <?php require_once ROUTE_APP . "/views/components/index/movieCard.php" ?>
       <?php require_once ROUTE_APP . "/views/inc/footer.php" ?>
 </body>
 

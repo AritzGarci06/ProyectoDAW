@@ -45,13 +45,19 @@ function filterMovies() {
             return !year.includes(date)
         }
 
-        if(genres.length > 0 && year.length === 0){
-            return !genres.every( (value) => genre.includes(value))
+        if (genres.length > 0 && year.length === 0) {
+            return !genres.every((value) => genre.includes(value))
         }
 
-        return !(year.includes(date) && genres.every( (value) => genre.includes(value)))
+        return !(year.includes(date) && genres.every((value) => genre.includes(value)))
     })
     filterList.map((div) => div.classList.add(displayNone))
+    const noMovies = document.querySelector('div.no-movies')
+    if (movies.length === filterList.length) {
+        noMovies.style.display = 'block'
+    } else {
+        noMovies.style.display = 'none'
+    }
 }
 
 function updateCounter(s) {
