@@ -4,7 +4,7 @@ class ReviewService
     public static function getReviews($id): array
     {
         $daoReview = new DaoReview();
-        return $daoReview->findByImbd_id($id);
+        return $daoReview->findByMovieId($id);
     }
     public static function getReview($id): ?ReviewEntity
     {

@@ -1,0 +1,22 @@
+# Ignorar archivos generados por el entorno de desarrollo
+/vendor/
+/node_modules/
+
+# Ignorar archivos de configuración específicos
+/config/*.php
+
+# Ignorar archivos de logs y caches
+/logs/
+/cache/
+
+# Ignorar archivos de respaldo
+*.bak
+*.swp
+
+# Ignorar archivos de configuración personal
+/.env
+/.env.local
+
+# Ignorar archivos de respaldo de bases de datos
+*.sql
+*.sqlite

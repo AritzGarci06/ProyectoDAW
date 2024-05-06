@@ -14,18 +14,18 @@ class DaoReview
 
     public function findById($id)
     {
-        $result = MySQLBD::queryRead("SELECT * FROM review WHERE reviewid = ?", $id);
+        $result = MySQLBD::queryRead("SELECT * FROM review WHERE review_id = ?", $id);
         if (count($result) < 1) {
             return null;
         }
         return ReviewEntity::arrayToObj($result[0]);
     }
 
-    public function findByImbd_id($id)
+    public function findByMovieId($id)
     {
         $result = MySQLBD::queryRead("SELECT 
-    reviewid, imdb_id, r.user_id, rating, body, date_timestamp, username 
-FROM review as r join user_client as u on r.user_id = u.user_id where r.imdb_id = ?;", $id);
+    review_id, movie_id, r.user_id, rating, title_review, body, date_timestamp, username 
+FROM review as r join user_client as u on r.user_id = u.user_id where r.movie_id = ? order by date_timestamp desc;", $id);
         $list = array();
         foreach ($result as $row) {
             $list[] = ReviewEntity::arrayToObj($row);
@@ -62,13 +62,13 @@ FROM review as r join user_client as u on r.user_id = u.user_id where r.imdb_id 
             $review->rating,
             $review->body,
             $review->date_timestamp,
-            $review->reviewid,
+            $review->review_id,
         );
     }
 
     public function delete($id)
     {
-        $query = "DELETE from review WHERE reviewid = ?";
+        $query = "DELETE from review WHERE review_id = ?";
         MySQLBD::queryWrite(
             $query,
             $id

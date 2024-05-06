@@ -19,11 +19,11 @@ class Movie extends Controller
     public function findOne($id = '')
     {
         $movie = $this->model('movie')->getMovie($id);
-//        $reviews = $this->model('review')->getReviews($id);
+        $reviews = $this->model('review')->getReviews($id);
         $data = array();
         $data['movie'] = $movie;
         $data['tags'] = $movie->genres;
-        $data['reviews'] = array();
+        $data['reviews'] = $reviews;
         $this->view('movie', $data);
     }
 

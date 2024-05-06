@@ -1,6 +1,12 @@
 @import "../constants.css";
 @import "hero.css";
 @import "review.css";
+@import "review-modal.css";
 body {
     background-color: var(--color-background) !important;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
 }

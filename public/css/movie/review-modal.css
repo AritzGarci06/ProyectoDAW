@@ -1,0 +1,29 @@
+form {
+    width: 100%;
+}
+
+label {
+    font-size: 18px;
+}
+
+
+@media screen and (width >= 768px) {
+    textarea {
+        width: 750px !important;
+    }
+    input[type="text"] {
+        width: 660px;
+    }
+
+}
+
+@media screen and (width <= 576px) {
+    textarea {
+        width: 200px !important;
+    }
+
+    input[type="text"] {
+        width: 100px;
+    }
+
+}
