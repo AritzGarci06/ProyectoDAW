@@ -13,8 +13,8 @@
 <?php require_once ROUTE_APP . "/views/inc/header.php" ?>
 <body>
 <?php require_once ROUTE_APP . "/views/components/movie/hero.php" ?>
-
 <?php require_once ROUTE_APP . "/views/components/movie/review.php" ?>
+<script src="<?php echo ROUTE_URL ?>/js/movie/main.js"></script>
 </body>
 <?php require_once ROUTE_APP . "/views/inc/footer.php" ?>
 </html>
