@@ -21,3 +21,16 @@
 .review {
     width: 500px;
 }
+
+.header-review{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-review-col{
+    gap: 16px;
+}
+
+.header-review-col img{
+    width: 100px;
+}

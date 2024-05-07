@@ -24,7 +24,8 @@ class DaoReview
     public function findByMovieId($id)
     {
         $result = MySQLBD::queryRead("SELECT 
-        movie_id,
+    review_id,    
+    movie_id,
         r.user_id,
         rating,
         title_review,
@@ -42,7 +43,7 @@ class DaoReview
 
     public function save(ReviewEntity $review)
     {
-        $query = "INSERT INTO review (movie_id, user_id, rating, title_review, body, date_timestamp) VALUES (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO review(movie_id, user_id, rating, title_review, body, date_timestamp) VALUES (?, ?, ?, ?, ?, ?)";
         MySQLBD::queryWrite(
             $query,
             $review->movie_id,
@@ -74,12 +75,12 @@ class DaoReview
 //        );
 //    }
 //
-//    public function delete($id)
-//    {
-//        $query = "DELETE from review WHERE review_id = ?";
-//        MySQLBD::queryWrite(
-//            $query,
-//            $id
-//        );
-//    }
+    public function delete($id)
+    {
+        $query = "DELETE from review WHERE review_id = ?";
+        MySQLBD::queryWrite(
+            $query,
+            $id
+        );
+    }
 }

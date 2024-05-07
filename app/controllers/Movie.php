@@ -28,39 +28,11 @@ class Movie extends Controller
         $this->view('movie', $data);
     }
 
-    public function saveReview()
-    {
-        if(
-            isset($_POST["subject"]) &&
-            isset($_POST["rating"]) &&
-            isset($_POST["review"])
-        ){
-           $reviewController = $this->model('review');
-            $obj = new ReviewEntity(
-                $_POST["movie-id"],
-               2,
-               $_POST["rating"],
-               $_POST["subject"],
-               $_POST["review"],
-               "2024-06-19 22:15:00"
-           );
-            $reviewController->setReview($obj);
-        }
-        $this->findOne($_POST["movie-id"]);
-        // $body = file_get_contents("php://input");
-        // $movie = \model\entity\MovieEntity::jsonToObj($body);
-        // MovieService::setMovie($movie);
-    }
 
     public function update()
     {
         // $body = file_get_contents("php://input");
         // $movie = \model\entity\MovieEntity::jsonToObj($body);
         // MovieService::updateMovie($movie);
-    }
-
-    public function delete($id)
-    {
-        // MovieService::deleteMovie($id);
     }
 }

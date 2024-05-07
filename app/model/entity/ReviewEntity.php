@@ -2,6 +2,7 @@
 
 class ReviewEntity
 {
+    public int $id;
     public string $movie_id;
     public int $user_id;
     public float $rating;
@@ -18,8 +19,9 @@ class ReviewEntity
      * @param string $body
      * @param string $date_timestamp
      */
-    public function __construct( string $movie_id, int $user_id, float $rating, string $title_review, string $body, string $date_timestamp)
+    public function __construct(int $id, string $movie_id, int $user_id, float $rating, string $title_review, string $body, string $date_timestamp)
     {
+        $this->id = $id;
         $this->movie_id = $movie_id;
         $this->user_id = $user_id;
         $this->rating = $rating;
@@ -33,9 +35,10 @@ class ReviewEntity
     {
 
         $obj = new ReviewEntity(
+            $row["review_id"] ?? 0,
             $row["movie_id"] ?? '',
             $row["user_id"] ?? '',
-            $row["rating"] ?? 0.0,
+            $row["rating"] ?? 0,
             $row["title_review"] ?? '',
             $row["body"] ?? '',
             $row["date_timestamp"] ?? new DateTime('now')

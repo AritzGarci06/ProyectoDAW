@@ -1,5 +1,5 @@
 <div class="form-container">
-    <form id="review-form" action="/proyectodaw/movie/saveReview/" method="post" autocomplete="off">
+    <form id="review-form" action="/proyectodaw/review/save/" method="post" autocomplete="off">
         <div class="form-group">
             <label for="movie-id" id="movie-id" class="d-none">Movie id
                 <input class="form-control" type="number" name="movie-id" value="<?php echo $movie->id?>">
