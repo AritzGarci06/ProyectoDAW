@@ -28,8 +28,10 @@ function activeList(id) {
     filterMovies()
 }
 
+const movies = Array.from(document.querySelectorAll('.movie'))
+let filterList = []
+
 function filterMovies() {
-    const movies = Array.from(document.querySelectorAll('.movie'))
     const year = Array.from(document.querySelectorAll('li.list-year.list-active')).map((item) => item.textContent.trim())
     const genres = Array.from(document.querySelectorAll('li.list-genre.list-active')).map((item) => item.textContent.trim())
     movies.map((div) => div.classList.remove(displayNone))
@@ -37,7 +39,7 @@ function filterMovies() {
     if (year.length === 0 && genres.length === 0) {
         return
     }
-    const filterList = movies.filter(div => {
+    filterList = movies.filter(div => {
         let date = div.querySelector('p.release-date').textContent.trim()
         let genre = div.querySelector('p.genres').textContent.trim().split(', ')
 
@@ -91,3 +93,22 @@ function cleanList() {
     updateCounter('genre')
     filterMovies()
 }
+
+let input = document.getElementById('input-search')
+input.addEventListener('input', function () {
+    let filter = input.value.toLowerCase()
+
+    const moviesFiltered = movies.filter(div => {
+        let title = div.querySelector('h4.title-movie').textContent.trim().toLowerCase()
+        return !title.includes(filter)
+    })
+
+    movies.map(function (item){
+        if(!filterList.includes(item) && !moviesFiltered.includes(item)){
+            item.classList.remove(displayNone)
+        }
+    })
+
+
+    moviesFiltered.map((div) => div.classList.add(displayNone))
+})

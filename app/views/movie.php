@@ -12,6 +12,7 @@
 </head>
 <?php require_once ROUTE_APP . "/views/inc/header.php" ?>
 <body>
+<div id="blur-background"></div>
 <?php require_once ROUTE_APP . "/views/components/movie/hero.php" ?>
 <?php require_once ROUTE_APP . "/views/components/movie/review.php" ?>
 <script src="<?php echo ROUTE_URL ?>/js/movie/main.js"></script>

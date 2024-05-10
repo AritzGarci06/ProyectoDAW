@@ -11,7 +11,7 @@ class Review extends Controller
         ){
             $reviewController = $this->model('review');
             $obj = new ReviewEntity(
-                0,
+                $_POST["review-id"],
                 $_POST["movie-id"],
                 2,
                 $_POST["rating"],

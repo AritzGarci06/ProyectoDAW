@@ -4,7 +4,6 @@
             <div id="title-container" class="row">
                 <h1 id="title" class="text-light"><?php echo $movie->title ?></h1>
                 <p class="text-white-50"><?php echo $movie->releaseDate ?></p>
-
             </div>
             <div id="btn-container" class="mb-2">
                 <?php

@@ -43,16 +43,37 @@ class DaoReview
 
     public function save(ReviewEntity $review)
     {
-        $query = "INSERT INTO review(movie_id, user_id, rating, title_review, body, date_timestamp) VALUES (?, ?, ?, ?, ?, ?)";
-        MySQLBD::queryWrite(
-            $query,
-            $review->movie_id,
-            $review->user_id,
-            $review->rating,
-            $review->title_review,
-            $review->body,
-            $review->date_timestamp,
-        );
+        if ($this->findById($review->id) == null) {
+            $query = "INSERT INTO review(movie_id, user_id, rating, title_review, body, date_timestamp) VALUES (?, ?, ?, ?, ?, ?)";
+            MySQLBD::queryWrite(
+                $query,
+                $review->movie_id,
+                $review->user_id,
+                $review->rating,
+                $review->title_review,
+                $review->body,
+                $review->date_timestamp,
+            );
+        }else{
+            $query = "UPDATE review SET
+            movie_id = ?,
+            user_id = ?,
+            rating = ?,
+            title_review = ?,
+            body = ?,
+            date_timestamp = ?
+        WHERE review_id = ?";
+            MySQLBD::queryWrite(
+                $query,
+                $review->movie_id,
+                $review->user_id,
+                $review->rating,
+                $review->title_review,
+                $review->body,
+                $review->date_timestamp,
+                $review->id
+            );
+        }
     }
 
 //    public function update(ReviewEntity $review)

@@ -7,23 +7,40 @@ label {
 }
 
 
-@media screen and (width >= 768px) {
+@media screen and (width >= 992px) {
+    textarea {
+        width: 1000px !important;
+    }
+    input[type="text"] {
+        width: 910px;
+    }
+
+}
+@media screen and (width >= 768px ) and (width < 992px) {
     textarea {
         width: 750px !important;
     }
     input[type="text"] {
         width: 660px;
     }
-
 }
 
-@media screen and (width <= 576px) {
-    textarea {
-        width: 200px !important;
-    }
+#blur-background{
+    display: none;
+    position: fixed;
+    top:0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.8;
+    z-index: 9;
+}
 
-    input[type="text"] {
-        width: 100px;
-    }
 
+#review-modal{
+    display: none;
+    position: fixed;
+    z-index: 10;
+    top: 30vh;
+    width: fit-content;
 }

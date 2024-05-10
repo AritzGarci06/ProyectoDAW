@@ -1,6 +1,3 @@
-#display-list-movies{
-    min-width: 450px;
-}
 .no-movies{
     display: none;
 }
@@ -14,16 +11,11 @@ h4 a {
     all: unset !important;
 }
 
-.container{
-    display: flex !important;
-    justify-content: center;
-    gap: 8px;
-}
-
 .movie-container{
     display: flex;
     margin-bottom: 16px;
     gap: 16px;
+
 }
 
 .poster{

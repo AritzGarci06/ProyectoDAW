@@ -16,12 +16,6 @@ class ReviewService
         $daoReview = new DaoReview();
         $daoReview->save($obj);
     }
-    public static function updateReview(ReviewEntity $obj)
-    {
-        $daoReview = new DaoReview();
-        $daoReview->update($obj);
-    }
-
     public static function deleteReview($id)
     {
         $daoReview = new DaoReview();

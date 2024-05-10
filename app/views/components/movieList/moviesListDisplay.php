@@ -8,13 +8,13 @@
                 <div class="movie">
                     <div class="movie-container">
                         <div>
-                            <a href="/tfg/movie/findOne/<?php echo $movie->id ?>">
+                            <a href="/proyectodaw/movie/findOne/<?php echo $movie->id ?>">
                                 <img class="image-fluid poster" src="<?php echo $movie->poster ?>" alt="...">
                             </a>
                         </div>
                         <div>
-                            <h4>
-                                <a href="/tfg/movie/findOne/<?php echo $movie->id ?>">
+                            <h4 class="title-movie">
+                                <a href="/proyectodaw/movie/findOne/<?php echo $movie->id ?>">
                                 <?php echo $movie->title ?>
                                 </a>
                             </h4>

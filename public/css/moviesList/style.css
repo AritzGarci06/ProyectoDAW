@@ -6,3 +6,26 @@ body{
     color: white !important;
 }
 
+#body-container{
+    max-width: max-content !important;
+}
+
+#content-container{
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 20px;
+}
+
+@media screen and (width <= 768px) {
+    #content-container{
+        display: grid;
+        justify-content: normal;
+        gap: 32px
+    }
+
+    .filter-section{
+        width: 100%;
+        max-width: none !important;
+    }
+}
