@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/datosUsuario/datosUsuario.css">
+    <title>Datos del usuario</title>
+</head>
+
+<body>
+    <!-- Encabezado -->
+    <header>
+        <!-- Logo -->
+    <div class="logo-container">
+        <img src="ruta/al/logo.png" alt="Logo">
+    </div>
+    <!-- Título de la página -->
+    <h1>Datos del usuario</h1>
+    <!-- Texto "Volver al menú inicial" -->
+    <div class="return-to-menu">
+    <button class="menu-button">Volver al menú inicial</button>
+    </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <div class="container">
+        <!-- Sección de perfil -->
+        <section class="profile-section">
+            <!-- Contenedor de foto de perfil -->
+            <div class="profile-picture-container">
+                <!-- Foto de perfil -->
+                <img src="foto_perfil.jpg" alt="" class="profile-picture">
+
+                <!-- Botón para cambiar la foto de perfil -->
+                <button class="change-picture-btn">Cambiar foto de perfil</button>
+            </div>
+
+            <!-- Nombre personal -->
+            <div class="profile-info">
+                <label><strong>Nombre</strong></label>
+                <div class="info-container">
+                    <textarea id="personal-name" placeholder="Juan"></textarea>
+                </div>
+                <button class="confirmar-button">Confirmar</button>
+            </div>
+
+            <!-- Apellido -->
+            <div class="profile-info">
+                <label><strong>Apellidos</strong></label>
+                <div class="info-container">
+                    <textarea id="last-name" placeholder="Pérez"></textarea>
+                </div>
+                <button class="confirmar-button">Confirmar</button>
+            </div>
+
+            <!-- Nombre de usuario -->
+            <div class="profile-info">
+                <label><strong>Nombre de usuario</strong></label>
+                <div class="info-container">
+                    <textarea id="username" placeholder="Usuario"></textarea>
+                </div>
+                <button class="confirmar-button">Confirmar</button>
+            </div>
+
+
+
+        </section>
+
+        <!-- Secciones de películas -->
+        <!-- Sección de películas favoritas -->
+        <section class="section">
+            <h2 class="section-title">Películas favoritas</h2>
+            <div class="section-content">
+                <div class="content-item">Película 1</div>
+                <div class="content-item">Película 2</div>
+                <div class="content-item">Película 3</div>
+                <div class="content-item">Película 4</div>
+                <div class="content-item">Película 5</div>
+            </div>
+        </section>
+
+        <!-- Sección de películas recientes -->
+        <section class="section">
+            <h2 class="section-title">Películas recientes</h2>
+            <div class="section-content">
+                <div class="content-item">Película 6</div>
+                <div class="content-item">Película 7</div>
+                <div class="content-item">Película 8</div>
+                <div class="content-item">Película 9</div>
+                <div class="content-item">Película 10</div>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
