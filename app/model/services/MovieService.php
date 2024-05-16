@@ -34,7 +34,7 @@ class MovieService
         $daoMovie->delete($id);
     }
 
-    public static function getFavoriteMovies(int $id)
+    public static function getFavoriteMovies($id)
     {
         $daoMovie = new DaoMovie();
         return $daoMovie->findFavoriteMovies($id);

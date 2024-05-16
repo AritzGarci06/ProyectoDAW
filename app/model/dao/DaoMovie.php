@@ -88,7 +88,7 @@ class DaoMovie
         );
     }
 
-    public function findFavoriteMovies(int $id)
+    public function findFavoriteMovies($id)
     {
         $query = "SELECT * FROM movie WHERE movie_id IN (SELECT movie_id FROM favorite_movies WHERE user_id = ?)";
         $resultMovies = MySQLBD::queryRead(

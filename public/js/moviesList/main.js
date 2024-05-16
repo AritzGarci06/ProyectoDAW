@@ -95,6 +95,7 @@ function cleanList() {
     list.forEach(item => item.classList.remove(cssClass))
     updateCounter()
     filterMovies()
+    noMovies.style.display = 'none'
 }
 
 let input = document.getElementById('input-search')
