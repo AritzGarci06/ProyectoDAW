@@ -19,7 +19,7 @@
                                     TRAILER</a>
                             </button>
                             <button type="button" class="btn btn-light">
-                                <a class="text-dark" href="movie/findOne/<?php echo $movie->id ?>">INFO</a>
+                                <a class="text-dark" href="movie/findone/<?php echo $movie->id ?>">INFO</a>
                             </button>
                         </div>
                     </div>

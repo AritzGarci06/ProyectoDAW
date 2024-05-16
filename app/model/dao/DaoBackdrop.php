@@ -1,6 +1,5 @@
 <?php
 
-
 class DaoBackdrop
 {
     public function findAll()

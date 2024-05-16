@@ -30,6 +30,7 @@ class MySQLBD
         $conexion = self::connect();
         $query = self::prepareQuery($conexion, $consulta, $parametros);
         $query->execute();
+        return mysqli_affected_rows($conexion);
     }
 
     private static function prepareQuery($conexion, $consulta, $args)

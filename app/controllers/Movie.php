@@ -13,6 +13,16 @@ class Movie extends Controller
         $data['movies'] = $movies;
         $data['genres'] = $genres;
         $data['years'] = $years;
+        $logged = CheckLog::checkLog();
+        $data['logged'] = $logged;
+        if($logged){
+            $arr = $movieService->getFavoriteMovies($_SESSION['user_id']);
+            $arrInt = [];
+            foreach ($arr as $obj){
+                $arrInt[] = $obj->id;
+            }
+            $data['favoriteMovies'] = $arrInt;
+        }
         $this->view('moviesList', $data);
     }
 
@@ -22,17 +32,41 @@ class Movie extends Controller
         $movie = $this->model('movie')->getMovie($id);
         $reviews = $this->model('review')->getReviews($id);
         $data = array();
+        $data['logged'] = CheckLog::checkLog();
+        $data['user_id'] = $_SESSION["user_id"] ?? 0;
         $data['movie'] = $movie;
         $data['tags'] = $movie->genres;
         $data['reviews'] = $reviews;
         $this->view('movie', $data);
     }
 
-
-    public function update()
+    public function saveFavoriteMovie($movieId)
     {
-        // $body = file_get_contents("php://input");
-        // $movie = \model\entity\MovieEntity::jsonToObj($body);
-        // MovieService::updateMovie($movie);
+        if (CheckLog::checkLog()) {
+            $movieService = $this->model('movie');
+
+            $flag = $movieService->findFavoriteMovie($_SESSION['user_id'], $movieId);
+            if ($flag) {
+                $response = $movieService->deleteFavoriteMovie($_SESSION['user_id'], $movieId);
+            } else {
+                $response = $movieService->setFavoriteMovies($_SESSION['user_id'], $movieId);
+            }
+
+            if ($response) {
+                $answer = array(
+                    'status' => 'success',
+                    'message' => 'Cambios Guardados',
+                );
+            } else {
+                $answer = array(
+                    'status' => 'error',
+                    'message' => 'Los cambios no han sido guardados',
+                );
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($answer);
+        }
+
     }
 }

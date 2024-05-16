@@ -91,7 +91,6 @@ if(empty($username_err) && empty($password_err)){
     }
 }
 
-// ...
 ?>
  
 <!DOCTYPE html>
@@ -134,4 +133,5 @@ if(empty($username_err) && empty($password_err)){
         </form>
     </div>
 </body>
+
 </html>

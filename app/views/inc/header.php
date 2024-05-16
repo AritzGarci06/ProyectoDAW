@@ -11,9 +11,18 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/proyectodaw/movie/">Movies</a>
                     </li>
+                    <?php if(isset($logged) && $logged):?>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Perfil</a>
+                        <a class="nav-link" aria-current="page" href="/proyectodaw/user/">Perfil</a>
                     </li>
+                    <li class="nav-item">
+                        <a id="logout-link" class="nav-link" href="/proyectodaw/registration/logout/">Cerrar Sesión</a>
+                    </li>
+                    <?php else:?>
+                    <li class="nav-item">
+                        <a id="login-link" class="nav-link" href="/proyectodaw/registration/">Iniciar Sesión</a>
+                    </li>
+                    <?php endif;?>
                 </ul>
             </div>
         </div>

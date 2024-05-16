@@ -54,7 +54,7 @@ class DaoReview
                 $review->body,
                 $review->date_timestamp,
             );
-        }else{
+        } else {
             $query = "UPDATE review SET
             movie_id = ?,
             user_id = ?,
@@ -74,33 +74,27 @@ class DaoReview
                 $review->id
             );
         }
+        $this->updateScore($review->movie_id);
     }
 
-//    public function update(ReviewEntity $review)
-//    {
-//        $query = "UPDATE review SET
-//            imdb_id = ?,
-//            user_id = ?,
-//            rating = ?,
-//            body = ?,
-//            date_timestamp = ?
-//        WHERE reviewid = ?";
-//        MySQLBD::queryWrite(
-//            $query,
-//            $review->imdb_id,
-//            $review->user_id,
-//            $review->rating,
-//            $review->body,
-//            $review->date_timestamp,
-//            $review->review_id,
-//        );
-//    }
-//
-    public function delete($id)
+    public function delete($reviewId, $movieId)
     {
         $query = "DELETE from review WHERE review_id = ?";
         MySQLBD::queryWrite(
             $query,
+            $reviewId
+        );
+        $this->updateScore($movieId);
+    }
+
+    private function updateScore($id)
+    {
+        $query = 'UPDATE movie SET score = (
+        select round(avg(rating),1) FROM review WHERE movie_id = ?
+        ) where movie_id = ?';
+        MySQLBD::queryWrite(
+            $query,
+            $id,
             $id
         );
     }

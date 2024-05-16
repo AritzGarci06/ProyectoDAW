@@ -16,9 +16,9 @@ class ReviewService
         $daoReview = new DaoReview();
         $daoReview->save($obj);
     }
-    public static function deleteReview($id)
+    public static function deleteReview($reviewId, $movieId)
     {
         $daoReview = new DaoReview();
-        $daoReview->delete($id);
+        $daoReview->delete($reviewId, $movieId);
     }
 }

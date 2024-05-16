@@ -1,0 +1,47 @@
+@import "../constants.css";
+
+body {
+    background-color: var(--color-background) !important;
+
+}
+
+.display{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.images-container {
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    height: 300px;
+}
+
+.images-container::-webkit-scrollbar {
+    width: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+}
+
+.images-container::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.img-style {
+    transition: transform 0.3s ease;
+}
+
+.img-style:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.no-movies{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

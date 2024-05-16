@@ -6,13 +6,11 @@
                 <p class="text-white-50"><?php echo $movie->releaseDate ?></p>
             </div>
             <div id="btn-container" class="mb-2">
-                <?php
-                foreach ($tags as $tag) {
-                    ?>
-                    <button class="buttons-genres"><?php echo $tag ?></button>
-                    <?php
-                }
-                ?>
+                <?php if (isset($tags)): ?>
+                    <?php foreach ($tags as $tag): ?>
+                        <button class="buttons-genres"><?php echo $tag ?></button>
+                    <?php endforeach; ?>
+                <?php endif; ?>
                 <button type="button" class="buttons-genres">
                     <a href='<?php echo $movie->trailerLink ?>' target='_blank'>WATCH
                         TRAILER</a>
@@ -50,7 +48,7 @@
                 </div>
             </div>
             <div class="mt-2">
-            <p class="text-light lh-lg"><?php echo $movie->body?></p>
+                <p class="text-light lh-lg"><?php echo $movie->body ?></p>
             </div>
         </div>
     </div>

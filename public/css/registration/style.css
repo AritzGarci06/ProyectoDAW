@@ -1,0 +1,49 @@
+@import "../constants.css";
+body{
+    background-color: var(--color-background) !important;
+}
+
+.object-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+#signin-card{
+    background-color: white;
+    width: 500px;
+    border-radius: 5px;
+    padding: 8px;
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+}
+
+#signin-card:last-child{
+    padding-bottom: 24px;
+}
+
+.line-effect:before, .line-effect:after{
+    content: " ";
+    border-top: 1px solid black;
+    display: inline-flex;
+    width: 100px;
+    position: relative;
+    top: -2.5px;
+    gap: 8px;
+}
+
+.line-effect:before{
+    right: 5px;
+}
+
+.line-effect:after{
+    right: -5px;
+}
+
+.no-style {
+    color: white !important;
+    text-decoration: none;
+    cursor: pointer;
+}

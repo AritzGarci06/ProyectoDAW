@@ -10,7 +10,7 @@
             </div>
             <hr>
             <div class="row review-container">
-                <?php if (empty($reviews)): ?>
+                <?php if (!isset($reviews) || empty($reviews)): ?>
                     <h5>No hay reseñas</h5>
                 <?php else: ?>
                     <?php include_once ROUTE_APP . "/views/components/movie/review-item.php" ?>

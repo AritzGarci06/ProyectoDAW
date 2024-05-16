@@ -1,5 +1,6 @@
 const cssClass = 'list-active'
 const displayNone = 'd-none'
+const noMovies = document.querySelector('div.no-movies')
 
 function displayList(id) {
     const cssClass = 'list-not-active'
@@ -18,13 +19,8 @@ function activeList(id) {
     } else {
         item.add(cssClass)
     }
-    let s = ''
-    if (id.includes('genre')) {
-        s = 'genre'
-    } else if (id.includes('year')) {
-        s = 'year'
-    }
-    updateCounter(s)
+
+    updateCounter()
     filterMovies()
 }
 
@@ -54,7 +50,7 @@ function filterMovies() {
         return !(year.includes(date) && genres.every((value) => genre.includes(value)))
     })
     filterList.map((div) => div.classList.add(displayNone))
-    const noMovies = document.querySelector('div.no-movies')
+
     if (movies.length === filterList.length) {
         noMovies.style.display = 'block'
     } else {
@@ -62,26 +58,34 @@ function filterMovies() {
     }
 }
 
-function updateCounter(s) {
 
-    let list = document.getElementsByClassName('list-'.concat(s))
-    let count = 0;
-    for (const item of list) {
-        if (item.classList.contains(cssClass)) {
-            count++
+function updateCounter() {
+    const arr = ['year', 'genre']
+    let totalCounter = 0
+    let filter = document.getElementsByClassName('fa-filter')[0]
+    for (let s of arr) {
+        let list = document.getElementsByClassName('list-'.concat(s))
+        let count = 0;
+        for (const item of list) {
+            if (item.classList.contains(cssClass)) {
+                count++
+            }
+        }
+        totalCounter += count
+        const item = document.getElementById('counter-'.concat(s))
+
+        if (count > 0) {
+            item.classList.remove(displayNone)
+            item.innerText = count
+        } else {
+            item.classList.add(displayNone)
+            item.innerText = ''
         }
     }
-    const item = document.getElementById('counter-'.concat(s))
 
-    if (count > 0) {
-        item.classList.remove(displayNone)
-        item.innerText = count
-        let filter = document.getElementsByClassName('fa-filter')[0]
+    if (totalCounter > 0) {
         filter.classList.remove(displayNone)
     } else {
-        item.classList.add(displayNone)
-        item.innerText = ''
-        let filter = document.getElementsByClassName('fa-filter')[0]
         filter.classList.add(displayNone)
     }
 }
@@ -89,8 +93,7 @@ function updateCounter(s) {
 function cleanList() {
     let list = document.querySelectorAll('.list-active')
     list.forEach(item => item.classList.remove(cssClass))
-    updateCounter('year')
-    updateCounter('genre')
+    updateCounter()
     filterMovies()
 }
 
@@ -103,12 +106,40 @@ input.addEventListener('input', function () {
         return !title.includes(filter)
     })
 
-    movies.map(function (item){
-        if(!filterList.includes(item) && !moviesFiltered.includes(item)){
+    movies.map(function (item) {
+        if (!filterList.includes(item) && !moviesFiltered.includes(item)) {
             item.classList.remove(displayNone)
         }
     })
 
 
     moviesFiltered.map((div) => div.classList.add(displayNone))
+    if (movies.length === filterList.length) {
+        noMovies.style.display = 'block'
+    } else {
+        noMovies.style.display = 'none'
+    }
 })
+
+const colorRedBtn = 'btn-danger'
+const colorGrayBtn = 'btn-outline-secondary'
+
+async function likeButton(btn, id) {
+    if (btn.classList.contains(colorRedBtn)) {
+        btn.classList.remove(colorRedBtn)
+        btn.classList.add(colorGrayBtn)
+    } else {
+        btn.classList.remove(colorGrayBtn)
+        btn.classList.add(colorRedBtn)
+    }
+
+    await fetch('/proyectodaw/movie/savefavoritemovie/'.concat(id))
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Hubo un problema al guardar el registro');
+            }
+            return response.json()
+        }).then(json => {
+            console.log(json)
+        })
+}

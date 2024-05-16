@@ -1,8 +1,6 @@
 <?php
 
-namespace model\entity;
-
-class User
+class UserEntity
 {
     public string $user_id;
     public string $username;
@@ -31,13 +29,27 @@ class User
 
     public static function arrayToObj($row)
     {
-        return new User(
+        return new UserEntity(
             $row["user_id"] ?? '',
             $row["username"] ?? '',
             $row["user_password"] ?? '',
             $row["mail"] ?? '',
             $row["registration_date"] ?? '',
             $row["user_profile"] ?? ''
+        );
+    }
+
+    public static function jsonToObj($json)
+    {
+        $objeto = json_decode($json);
+
+        return new UserEntity(
+            null,
+            $objeto->username,
+            $objeto->user_password,
+            $objeto->mail,
+            Utils::getDate(),
+            $objeto->user_profile
         );
     }
 

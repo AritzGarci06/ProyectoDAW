@@ -2,3 +2,16 @@
     --color-background: #101820;
     --color-background-ligther: #263a4f;
 }
+
+.no-style-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+footer{
+    position: relative !important;
+}

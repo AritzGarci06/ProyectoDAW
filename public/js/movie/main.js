@@ -1,5 +1,4 @@
-//FORM SCRIPT
-document.getElementById('review-form').addEventListener('submit', function(event) {
+document.getElementById('review-form').addEventListener('submit', function (event) {
     event.preventDefault()
     var form = event.target
     var formData = new FormData(form)
@@ -12,21 +11,23 @@ document.getElementById('review-form').addEventListener('submit', function(event
 })
 
 let botonesDelete = document.querySelectorAll('.delete-btn')
-botonesDelete.forEach(function(boton) {
-    boton.addEventListener('click', function() {
+botonesDelete.forEach(function (boton) {
+    boton.addEventListener('click', function () {
         let id = this.getAttribute('data-info')
-        miFuncion(id)
+        let movieID = this.getAttribute('data-movie')
+        miFuncion(id, movieID)
     })
 })
 
 
-function miFuncion(id) {
+function miFuncion(id, movieID) {
     let xhr = new XMLHttpRequest()
-    xhr.open('POST','/proyectodaw/review/delete/'.concat(id),true)
-    xhr.onload = function (){
+    let endpoint = `/proyectodaw/review/delete/${id}/${movieID}`
+    xhr.open('POST', endpoint, true)
+    xhr.onload = function () {
         window.location.reload()
     }
-    xhr.onerror = function (){
+    xhr.onerror = function () {
         alert('No se pudo borrar el registro')
     }
     xhr.send()
@@ -41,12 +42,12 @@ let modalId = document.getElementById('input-id')
 
 //MODAL FORM SCRIPT
 let btnEdit = document.querySelectorAll('.edit-btn')
-btnEdit.forEach(function(btn) {
-    btn.addEventListener('click', function() {
+btnEdit.forEach(function (btn) {
+    btn.addEventListener('click', function () {
         let id = this.getAttribute('data-info')
         modalId.value = id
         modalSubject.value = document.getElementById('title-'.concat(id)).innerText
-        modalRating.value =  document.getElementById('rating-'.concat(id)).innerText
+        modalRating.value = document.getElementById('rating-'.concat(id)).innerText
         modalReview.value = document.getElementById('review-'.concat(id)).innerText
 
         modalForm.style.display = 'block'
@@ -55,7 +56,7 @@ btnEdit.forEach(function(btn) {
 })
 
 let cancelBtn = document.getElementById('cancel-form')
-cancelBtn.addEventListener('click', function (){
+cancelBtn.addEventListener('click', function () {
     modalSubject.value = ''
     modalRating.value = ''
     modalReview.value = ''
@@ -63,7 +64,7 @@ cancelBtn.addEventListener('click', function (){
     background.style.display = 'none'
 })
 
-document.getElementById('review-form-modal').addEventListener('submit', function(event) {
+document.getElementById('review-form-modal').addEventListener('submit', function (event) {
     event.preventDefault()
     var form = event.target
     var formData = new FormData(form)

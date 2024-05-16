@@ -4,16 +4,17 @@ class Review extends Controller
 {
     public function save()
     {
-        if(
+        if (
             isset($_POST["subject"]) &&
             isset($_POST["rating"]) &&
-            isset($_POST["review"])
-        ){
+            isset($_POST["review"]) &&
+            isset($_POST["user-id"])
+        ) {
             $reviewController = $this->model('review');
             $obj = new ReviewEntity(
                 $_POST["review-id"],
                 $_POST["movie-id"],
-                2,
+                $_POST["user-id"],
                 $_POST["rating"],
                 $_POST["subject"],
                 $_POST["review"],
@@ -23,8 +24,8 @@ class Review extends Controller
         }
     }
 
-    public function delete($id)
+    public function delete($reviewId, $movieId)
     {
-        $this->model('review')->deleteReview($id);
+        $this->model('review')->deleteReview($reviewId, $movieId);
     }
 }

@@ -87,4 +87,51 @@ class DaoMovie
             $id
         );
     }
+
+    public function findFavoriteMovies(int $id)
+    {
+        $query = "SELECT * FROM movie WHERE movie_id IN (SELECT movie_id FROM favorite_movies WHERE user_id = ?)";
+        $resultMovies = MySQLBD::queryRead(
+            $query,
+            $id
+        );
+        $list = array();
+        foreach ($resultMovies as $row) {
+            $list[] = MovieEntity::arrayToObj($row, array(), array());
+        }
+        return $list;
+    }
+
+    public function saveFavoriteMovies(int $userId, int $movieId)
+    {
+        $query = "INSERT INTO favorite_movies VALUES (?,?)";
+        $result = MySQLBD::queryWrite(
+            $query,
+            $userId,
+            $movieId
+        );
+        return $result > 0;
+    }
+
+    public function findByUserIdAndByMovieId(int $userId, int $movieId): bool
+    {
+        $query = "SELECT * FROM favorite_movies WHERE user_id = ? and movie_id = ?";
+        $result = MySQLBD::queryRead(
+            $query,
+            $userId,
+            $movieId
+        );
+        return (count($result) == 1);
+    }
+
+    public function deleteFavoriteMovie(int $userId, $movieId): bool
+    {
+        $query = "DELETE from favorite_movies WHERE user_id = ? AND movie_id = ?";
+        $result = MySQLBD::queryWrite(
+            $query,
+            $userId,
+            $movieId
+        );
+        return $result > 0;
+    }
 }

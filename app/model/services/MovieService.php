@@ -33,4 +33,28 @@ class MovieService
         $daoMovie = new DaoMovie();
         $daoMovie->delete($id);
     }
+
+    public static function getFavoriteMovies(int $id)
+    {
+        $daoMovie = new DaoMovie();
+        return $daoMovie->findFavoriteMovies($id);
+    }
+
+    public static function setFavoriteMovies(int $userId, $movieId)
+    {
+        $daoMovie = new DaoMovie();
+        return $daoMovie->saveFavoriteMovies($userId, $movieId);
+    }
+
+    public static function findFavoriteMovie(int $userId, $movieId): bool
+    {
+        $daoMovie = new DaoMovie();
+        return $daoMovie->findByUserIdAndByMovieId($userId, $movieId);
+    }
+
+    public static function deleteFavoriteMovie(int $userId, $movieId): bool
+    {
+        $daoMovie = new DaoMovie();
+        return $daoMovie->deleteFavoriteMovie($userId, $movieId);
+    }
 }
