@@ -409,24 +409,41 @@ VALUES (1, 1, 5, 'Increíble película',
         'Una película muy recomendable. La trama es intrigante y los personajes son carismáticos. Definitivamente vale la pena verla.',
         '2024-06-19 22:15:00');
 
+DELIMITER //
+drop procedure if exists avg_rating_movie;
+CREATE PROCEDURE avg_rating_movie()
+BEGIN
+    DECLARE done INT DEFAULT 0;
+    DECLARE m_id INT;
+    declare cursor_id cursor for select movie_id from movie;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+    open cursor_id;
 
--- Pensar como sería la implementación para el restos de tablas
+    read_loop:
+    LOOP
+        FETCH cursor_id INTO m_id;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
 
--- create table playback_history(
--- playback_id int auto_increment not null primary key,
--- user_id int not null,
--- imdb_id varchar(50) not null,
--- date_timestamp datetime not null,
--- foreign key (imdb_id) references movie (imdb_id),
--- foreign key (user_id) references user_client (user_id)
--- );
+        update movie
+        set score = (select ifnull(round(avg(rating), 1), 0) from review where movie_id = m_id)
+        where movie_id = m_id;
 
--- create table playlist(
--- user_id int not null,
--- imdb_id varchar(50) not null,
--- name_playlist varchar(50) not null,
--- date_timestamp datetime not null,
--- foreign key (imdb_id) references movie (imdb_id),
--- foreign key (user_id) references user_client (user_id)
--- );
 
+    END LOOP;
+
+END //
+DELIMITER ;
+
+call avg_rating_movie();
+
+drop table if exists favorite_movies;
+create table favorite_movies
+(
+    user_id  int not null,
+    movie_id int not null,
+    foreign key (movie_id) references movie (movie_id),
+    foreign key (user_id) references user_client (user_id),
+    primary key (user_id, movie_id)
+)
